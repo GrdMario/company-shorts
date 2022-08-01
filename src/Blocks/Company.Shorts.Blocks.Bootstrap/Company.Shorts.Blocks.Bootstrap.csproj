@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Company.Shorts.Blocks.Common.Serilog.Configuration\Company.Shorts.Blocks.Common.Serilog.Configuration.csproj" />
+    <ProjectReference Include="..\Company.Shorts.Blocks.Presentation.Api.Configuration\Company.Shorts.Blocks.Presentation.Api.Configuration.csproj" />
+  </ItemGroup>
+
+</Project>
