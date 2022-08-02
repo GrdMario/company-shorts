@@ -1,14 +1,14 @@
 ﻿namespace Company.Shorts.Presentation.Api.Controllers.V1
 {
     using AutoMapper;
-    using MediatR;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
     using Company.Shorts.Application.ExampleAggregate.Command;
     using Company.Shorts.Application.ExampleAggregate.Common.Responses;
     using Company.Shorts.Application.ExampleAggregate.Query;
     using Company.Shorts.Presentation.Api.Controllers.V1.Models.Examples;
     using Company.Shorts.Presentation.Api.Internal.Constants;
+    using MediatR;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using Swashbuckle.AspNetCore.Annotations;
 
     [ApiVersion(ApiVersions.V1)]

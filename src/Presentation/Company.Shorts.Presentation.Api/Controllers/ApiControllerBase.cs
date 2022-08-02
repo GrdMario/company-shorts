@@ -27,7 +27,8 @@
 
         protected async Task<IActionResult> ProcessAsync<TApiDto, TCommand, TResponse>(
             TApiDto request,
-            Action<IMappingOperationOptions<object, TCommand>>? opts = null)
+            Action<IMappingOperationOptions<object, TCommand>>? opts = null,
+            CancellationToken cancellationToken = default)
             where TApiDto : IApiDto
             where TCommand : IRequest<TResponse>
         {
@@ -35,7 +36,7 @@
                 ? _mapper.Map<TCommand>(request, opts)
                 : _mapper.Map<TCommand>(request);
 
-            TResponse result = await _mediator.Send(command);
+            TResponse result = await _mediator.Send(command, cancellationToken);
 
             if (result is null)
             {
@@ -47,7 +48,8 @@
 
         protected async Task<IActionResult> ProcessAsync<TApiDto, TCommand>(
             TApiDto request,
-            Action<IMappingOperationOptions<object, TCommand>>? opts = null)
+            Action<IMappingOperationOptions<object, TCommand>>? opts = null,
+            CancellationToken cancellationToken = default)
             where TApiDto : IApiDto
             where TCommand : IRequest
         {
@@ -55,7 +57,7 @@
                 ? _mapper.Map<TCommand>(request, opts)
                 : _mapper.Map<TCommand>(request);
 
-            await _mediator.Send(command);
+            await _mediator.Send(command, cancellationToken);
 
             return NoContent();
         }

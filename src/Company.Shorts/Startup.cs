@@ -6,6 +6,7 @@
     using Company.Shorts.Blocks.Common.Swagger.Configuration;
     using Company.Shorts.Blocks.Presentation.Api.Configuration;
     using Company.Shorts.Infrastructure.ExampleAdapter;
+    using Company.Shorts.Infrastructure.Http.CarsServiceAdapter;
     using Company.Shorts.Presentation.Api;
     using Hellang.Middleware.ProblemDetails;
 
@@ -28,11 +29,17 @@
                 .GetSection(ExampleAdapterSettings.Key)
                 .Get<ExampleAdapterSettings>();
 
+        public CarServiceAdapterSettings CarServiceAdapterSettings =>
+            Configuration
+                .GetSection(CarServiceAdapterSettings.Key)
+                .Get<CarServiceAdapterSettings>();
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
             services.AddHealthChecks();
             services.AddInfrastructureExampleAdapter(ExampleAdapterSettings);
+            services.AddInfrastructureHttpCarServiceAdapter(CarServiceAdapterSettings);
             services.AddApplicationLayer();
             services.AddPresentationLayer(Environment);
             services.AddAutoMapperConfiguration(AppDomain.CurrentDomain);

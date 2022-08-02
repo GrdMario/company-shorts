@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Internal\Configuration\**" />
+    <EmbeddedResource Remove="Internal\Configuration\**" />
+    <None Remove="Internal\Configuration\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.4.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7" />
@@ -24,10 +30,6 @@
     <ProjectReference Include="..\..\Blocks\Company.Shorts.Blocks.Common.Swagger.Configuration\Company.Shorts.Blocks.Common.Swagger.Configuration.csproj" />
     <ProjectReference Include="..\..\Blocks\Company.Shorts.Blocks.Presentation.Api.Configuration\Company.Shorts.Blocks.Presentation.Api.Configuration.csproj" />
    
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Internal\Configuration\" />
   </ItemGroup>
 
 

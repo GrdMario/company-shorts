@@ -65,6 +65,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Shorts.Blocks.Infra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Shorts.Blocks.Bootstrap", "src\Blocks\Company.Shorts.Blocks.Bootstrap\Company.Shorts.Blocks.Bootstrap.csproj", "{97E2BC4D-FA8F-408B-8CCB-5DABB92E7B5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.Shorts.Infrastructure.Http.CarsServiceAdapter", "src\Infrastructure\Company.Shorts.Infrastructure.Http.CarsServiceAdapter\Company.Shorts.Infrastructure.Http.CarsServiceAdapter.csproj", "{9119C1B5-0A0C-4D55-9AF7-F4697194AFA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{97E2BC4D-FA8F-408B-8CCB-5DABB92E7B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97E2BC4D-FA8F-408B-8CCB-5DABB92E7B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97E2BC4D-FA8F-408B-8CCB-5DABB92E7B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9119C1B5-0A0C-4D55-9AF7-F4697194AFA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9119C1B5-0A0C-4D55-9AF7-F4697194AFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9119C1B5-0A0C-4D55-9AF7-F4697194AFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9119C1B5-0A0C-4D55-9AF7-F4697194AFA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,6 +177,7 @@ Global
 		{1F164A3A-DAED-46EA-8C0A-99D0A5A97154} = {8605C2C0-2957-4916-9EB6-2E32E8D96131}
 		{0361972B-92A7-496E-A50C-DAE394B57698} = {8605C2C0-2957-4916-9EB6-2E32E8D96131}
 		{97E2BC4D-FA8F-408B-8CCB-5DABB92E7B5A} = {8605C2C0-2957-4916-9EB6-2E32E8D96131}
+		{9119C1B5-0A0C-4D55-9AF7-F4697194AFA4} = {EEB9B328-9968-45BC-8922-4657700D2FB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84FEE7B5-9D59-44E9-B481-706264D67961}
