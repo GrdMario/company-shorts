@@ -1,19 +1,18 @@
 ﻿namespace Company.Shorts.Blocks.Bootstrap
 {
+    using Azure.Extensions.AspNetCore.Configuration.Secrets;
+    using Azure.Identity;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Hosting;
     using Serilog;
 
-    public static class ApplicationLauncher
+    public static partial class ApplicationLauncher
     {
-
         public static async Task<int> RunAsync<TStartup>(string[] args)
             where TStartup : class
         {
             var builder = new ConfigurationBuilder();
-
-            BuildConfiguration<TStartup>(builder, args);
 
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(builder.Build())
@@ -22,8 +21,15 @@
             try
             {
                 Log.Information("Starting web host.");
-                await CreateHostBuilder<TStartup>(args).Build().RunAsync();
-                Log.Information("Web host started.");
+
+                var host = CreateHostBuilder<TStartup>(args)
+                    .ConfigureAppConfiguration((hostBuildContext, configurationBuilder) =>
+                {
+                    BuildConfiguration<TStartup>(configurationBuilder, hostBuildContext.HostingEnvironment, args);
+                });
+
+                await host.Build().RunAsync();
+
                 return ExitCode.Success;
             }
             catch (Exception exception)
@@ -45,14 +51,12 @@
                 .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<TStartup>());
         }
 
-        private static void BuildConfiguration<TStartup>(IConfigurationBuilder builder, string[] args)
+        private static void BuildConfiguration<TStartup>(
+            IConfigurationBuilder builder,
+            IHostEnvironment environment,
+            string[] args)
             where TStartup : class
         {
-            var environment = Environment.GetEnvironmentVariable(HostEnvironment.Variable);
-
-            var isDevelopment = string.IsNullOrWhiteSpace(environment)
-                || string.Equals(environment, HostEnvironment.Development, StringComparison.OrdinalIgnoreCase);
-
             builder
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile(
@@ -60,17 +64,42 @@
                     optional: false,
                     reloadOnChange: true)
                 .AddJsonFile(
-                    path: $"appsettings.{environment}.json",
+                    path: $"appsettings.{environment.EnvironmentName}.json",
                     optional: true,
                     reloadOnChange: true)
                 .AddEnvironmentVariables();
 
-            if (isDevelopment)
+            if (environment.IsDevelopment())
             {
                 builder.AddUserSecrets<TStartup>();
             }
 
+            if (environment.IsProduction())
+            {
+                var keyVaultName = builder.Build().GetSection("Azure:KeyVault:Name").Value;
+
+                builder.AddAzureKeyVault(
+                    new Uri($"https://{keyVaultName}.vault.azure.net/"),
+                    new DefaultAzureCredential(new DefaultAzureCredentialOptions
+                    {
+                        ExcludeAzureCliCredential = true,
+                        ExcludeAzurePowerShellCredential = true,
+                        ExcludeEnvironmentCredential = true,
+                        ExcludeInteractiveBrowserCredential = true,
+                        ExcludeManagedIdentityCredential = true,
+                        ExcludeSharedTokenCacheCredential = true,
+                        ExcludeVisualStudioCodeCredential = true,
+                        ExcludeVisualStudioCredential = false
+                    }),
+                    new AzureKeyVaultConfigurationOptions()
+                    {
+                        Manager = new PrefixKeyVaultSecretManager(environment.EnvironmentName, environment.ApplicationName)
+                    });
+            }
+
             builder.AddCommandLine(args);
+
+            builder.Build();
         }
     }
 }
