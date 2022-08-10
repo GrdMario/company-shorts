@@ -17,16 +17,12 @@
 
         public override bool Load(SecretProperties properties)
         {
-            bool isThere = properties.Name.StartsWith(this.prefix);
-
-            return isThere;
+            return properties.Name.StartsWith(this.prefix);
         }
 
         public override string GetKey(KeyVaultSecret secret)
         {
-            var value = secret.Name[this.prefix.Length..].Replace("--", ConfigurationPath.KeyDelimiter);
-
-            return value;
+            return secret.Name[this.prefix.Length..].Replace("--", ConfigurationPath.KeyDelimiter);
         }
     }
 }
