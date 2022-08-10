@@ -1,7 +1,6 @@
 ﻿namespace Company.Shorts.Application.ExampleAggregate.Command
 {
     using Company.Shorts.Application.Contracts.Http;
-    using Company.Shorts.Blocks.Application.Contracts;
     using Company.Shorts.Domain;
     using FluentValidation;
     using MediatR;
@@ -21,25 +20,18 @@
 
     internal sealed class CreateExampleCommandHandler : AsyncRequestHandler<CreateExampleCommand>
     {
-        private readonly IExampleAdapter _exampleAdapter;
-        private readonly ICompanyCarsAdapter _companyCarsAdapter;
+        private readonly IExampleAdapter exampleAdapter;
 
-        public CreateExampleCommandHandler(
-            IExampleAdapter exampleAdapter, ICompanyCarsAdapter companyCarsAdapter)
+        public CreateExampleCommandHandler(IExampleAdapter exampleAdapter)
         {
-            _exampleAdapter = exampleAdapter;
-            _companyCarsAdapter = companyCarsAdapter;
+            this.exampleAdapter = exampleAdapter;
         }
 
         protected override async Task Handle(CreateExampleCommand request, CancellationToken cancellationToken)
         {
-            Car car = new(Guid.NewGuid(), "BMW", 1, 1, 1, 1, 1, DateTimeOffset.UtcNow, "USA");
+            Example example = new(Guid.NewGuid(), request.Name);
 
-            await _companyCarsAdapter.CreateCorrectAsync(car, cancellationToken);
-
-            await _companyCarsAdapter.CreateIncorrectAsync(car, cancellationToken);
-
-            var cars = await _companyCarsAdapter.GetCarsCorrectlyAsync(cancellationToken);
+            await this.exampleAdapter.CreateAsync(example, cancellationToken);
         }
     }
 }
