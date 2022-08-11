@@ -6,6 +6,7 @@
     using Company.Shorts.Blocks.Common.Swagger.Configuration;
     using Company.Shorts.Blocks.Presentation.Api.Configuration;
     using Company.Shorts.Infrastructure.ExampleAdapter;
+    using Company.Shorts.Infrastructure.HttpContextAccessorAdapter;
     using Company.Shorts.Presentation.Api;
     using Hellang.Middleware.ProblemDetails;
 
@@ -36,6 +37,7 @@
             services.AddApplicationLayer();
             services.AddPresentationLayer(Environment);
             services.AddAutoMapperConfiguration(AppDomain.CurrentDomain);
+            services.AddHttpContextAdapter();
         }
 
         public void Configure(IApplicationBuilder app)
