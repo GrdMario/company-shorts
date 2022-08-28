@@ -1,11 +1,9 @@
 ﻿namespace Company.Shorts.Presentation.Api
 {
-    using Company.Shorts.Blocks.Common.Swagger.Configuration;
-    using Company.Shorts.Blocks.Presentation.Api.Configuration;
+    using Company.Shorts.Presentation.Api.Internal.Configuration.Rest;
+    using Company.Shorts.Presentation.Api.Internal.Configuration.Swagger;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Swashbuckle.AspNetCore.Filters;
-    using System.Reflection;
 
     public static class DependecyInjection
     {
@@ -15,8 +13,7 @@
                 .AddSwaggerConfiguration();
 
             services
-                .AddRestApiConfiguration(environment)
-                .AddSwaggerExamplesFromAssemblies(Assembly.GetExecutingAssembly());
+                .AddRestApiConfiguration(environment);
 
             return services;
         }

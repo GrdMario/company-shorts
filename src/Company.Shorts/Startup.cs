@@ -3,10 +3,9 @@
     using Company.Shorts.Application;
     using Company.Shorts.Blocks.Common.Mapping.Configuration;
     using Company.Shorts.Blocks.Common.Serilog.Configuration;
-    using Company.Shorts.Blocks.Common.Swagger.Configuration;
-    using Company.Shorts.Blocks.Presentation.Api.Configuration;
     using Company.Shorts.Infrastructure.ExampleAdapter;
     using Company.Shorts.Presentation.Api;
+    using Company.Shorts.Presentation.Api.Internal.Configuration.Swagger;
     using Hellang.Middleware.ProblemDetails;
 
     public sealed class Startup
@@ -63,7 +62,6 @@
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapDefaultHealthCheckRoute();
             });
         }
     }

@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Company.Shorts.Blocks.Common.Serilog.Configuration\Company.Shorts.Blocks.Common.Serilog.Configuration.csproj" />
-    <ProjectReference Include="..\Company.Shorts.Blocks.Presentation.Api.Configuration\Company.Shorts.Blocks.Presentation.Api.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

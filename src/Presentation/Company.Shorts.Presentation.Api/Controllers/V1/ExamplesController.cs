@@ -17,42 +17,69 @@
         public ExamplesController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
         {
         }
-
-        /// <summary>
-        /// Gets examples.
-        /// </summary>
-        /// <param name="query">Model for quering examples.</param>
+    
         [HttpGet]
-        [SwaggerOperation(OperationId = nameof(Get), Tags = new[] { ApiTags.Examples })]
-        [ProducesResponseType(typeof(List<ExampleResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [SwaggerOperation(
+            OperationId = nameof(Get),
+            Tags = new[] { ApiTags.Examples },
+            Description = "Gets a list of examples.",
+            Summary = "Retrieve list of examples.")]
+        [SwaggerResponse(
+            StatusCodes.Status200OK,
+            Description = "Successfull operation.",
+            Type = typeof(List<ExampleResponseDto>))]
+        [SwaggerResponse(
+            StatusCodes.Status400BadRequest,
+            Description = "Bad request.",
+            Type = typeof(ValidationProblemDetails))]
+        [SwaggerResponse(
+            StatusCodes.Status500InternalServerError,
+            Description = "Internal server error.",
+            Type = typeof(ProblemDetails))]
         public async Task<IActionResult> Get([FromQuery] GetExamplesQueryDto request)
         {
-            return await ProcessAsync<GetExamplesQueryDto, GetExamplesQuery, List<ExampleResponse>>(request);
+            return await ProcessAsync<GetExamplesQueryDto, GetExamplesQuery, List<ExampleResponse>, List<ExampleResponseDto>>(request);
         }
 
-        /// <summary>
-        /// Creates example.
-        /// </summary>
         [HttpPost]
-        [SwaggerOperation(OperationId = nameof(Post), Tags = new[] { ApiTags.Examples })]
-        [ProducesResponseType(typeof(ExampleResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [SwaggerOperation(
+            OperationId = nameof(Post),
+            Description = "Creates new example.",
+            Summary = "Creates new example.",
+            Tags = new[] { ApiTags.Examples })]
+        [SwaggerResponse(
+            StatusCodes.Status204NoContent,
+            Description = "Successfull operation.")]
+        [SwaggerResponse(
+            StatusCodes.Status400BadRequest,
+            Description = "Bad request.",
+            Type = typeof(ValidationProblemDetails))]
+        [SwaggerResponse(
+            StatusCodes.Status500InternalServerError,
+            Description = "Internal server error.",
+            Type = typeof(ProblemDetails))]
         public async Task<IActionResult> Post([FromBody] CreateExampleCommandDto request)
         {
             return await ProcessAsync<CreateExampleCommandDto, CreateExampleCommand>(request);
         }
 
-        /// <summary>
-        /// Updates example.
-        /// </summary>
         [HttpPut("{id}")]
-        [SwaggerOperation(OperationId = nameof(Put), Tags = new[] { ApiTags.Examples })]
-        [ProducesResponseType(typeof(ExampleResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [SwaggerOperation(
+            OperationId = nameof(Put),
+            Description = "Updates an existing example by unique identifier.",
+            Summary = "Updates existing example.",
+            Tags = new[] { ApiTags.Examples })]
+        [SwaggerResponse(
+            StatusCodes.Status204NoContent,
+            Description = "Successfull operation.")]
+        [SwaggerResponse(
+            StatusCodes.Status400BadRequest,
+            Description = "Bad request.",
+            Type = typeof(ValidationProblemDetails))]
+        [SwaggerResponse(
+            StatusCodes.Status500InternalServerError,
+            Description = "Internal server error.",
+            Type = typeof(ProblemDetails))]
         public async Task<IActionResult> Put(Guid id, [FromBody] UpdateExampleCommandDto request)
         {
             return await ProcessAsync<UpdateExampleCommandDto, UpdateExampleCommand>(request, opt => opt.AfterMap((_, command) =>
@@ -61,17 +88,27 @@
             }));
         }
 
-        /// <summary>
-        /// Gets example by id.
-        /// </summary>
         [HttpGet("{id}")]
-        [SwaggerOperation(OperationId = nameof(GetById), Tags = new[] { ApiTags.Examples })]
-        [ProducesResponseType(typeof(ExampleResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [SwaggerOperation(
+            OperationId = nameof(GetById),
+            Tags = new[] { ApiTags.Examples },
+            Description = "Retrieves an example by unique identifier.",
+            Summary = "Retrieve an examples.")]
+        [SwaggerResponse(
+            StatusCodes.Status200OK,
+            Description = "Successfull operation.",
+            Type = typeof(ExampleResponseDto))]
+        [SwaggerResponse(
+            StatusCodes.Status400BadRequest,
+            Description = "Bad request.",
+            Type = typeof(ValidationProblemDetails))]
+        [SwaggerResponse(
+            StatusCodes.Status500InternalServerError,
+            Description = "Internal server error.",
+            Type = typeof(ProblemDetails))]
         public async Task<IActionResult> GetById(Guid id)
         {
-            return await ProcessAsync<GetExampleQueryDto, GetExampleQuery, ExampleResponse>(new GetExampleQueryDto(id));
+            return await ProcessAsync<GetExampleQueryDto, GetExampleQuery, ExampleResponse, ExampleResponseDto>(new GetExampleQueryDto(id));
         }
     }
 }

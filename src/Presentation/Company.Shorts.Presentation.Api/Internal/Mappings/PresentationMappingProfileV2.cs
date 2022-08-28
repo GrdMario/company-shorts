@@ -4,11 +4,11 @@
     using Company.Shorts.Application.ExampleAggregate.Command;
     using Company.Shorts.Application.ExampleAggregate.Common.Responses;
     using Company.Shorts.Application.ExampleAggregate.Query;
-    using Company.Shorts.Presentation.Api.Controllers.V1.Models.Examples;
+    using Company.Shorts.Presentation.Api.Controllers.V2.Models.Examples;
 
-    internal sealed class PresentationMappingProfile : Profile
+    internal sealed class PresentationMappingProfileV2 : Profile
     {
-        public PresentationMappingProfile()
+        public PresentationMappingProfileV2()
         {
             this.CreateMap<GetExampleQueryDto, GetExampleQuery>();
             this.CreateMap<GetExamplesQueryDto, GetExamplesQuery>();

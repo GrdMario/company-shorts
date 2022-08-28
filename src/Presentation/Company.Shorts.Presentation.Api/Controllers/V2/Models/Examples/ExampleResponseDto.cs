@@ -1,8 +1,11 @@
-﻿namespace Company.Shorts.Application.ExampleAggregate.Common.Responses
+﻿namespace Company.Shorts.Presentation.Api.Controllers.V2.Models.Examples
 {
     using System;
 
-    public class ExampleResponse
+    /// <summary>
+    /// Example response.
+    /// </summary>
+    public class ExampleResponseDto
     {
         /// <summary>
         /// Unique identifier of an example.
