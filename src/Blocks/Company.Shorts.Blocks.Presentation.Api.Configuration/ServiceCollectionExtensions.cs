@@ -4,8 +4,6 @@
     using Hellang.Middleware.ProblemDetails;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ApplicationModels;
-    using Microsoft.AspNetCore.Routing;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Newtonsoft.Json;
@@ -17,44 +15,28 @@
     {
         public static IServiceCollection AddRestApiConfiguration(
             this IServiceCollection services,
-            IHostEnvironment enviroment,
-            Action<RouteOptions>? routeOptions = null,
-            Action<ProblemDetailsOptions>? problemDetailsOptions = null,
-            Action<MvcOptions>? mvcOptions = null,
-            Action<MvcNewtonsoftJsonOptions>? newtonsoftOptions = null,
-            Type[]? knownExceptionTypes = null)
+            IHostEnvironment enviroment)
         {
-            routeOptions ??= options => options.LowercaseUrls = true;
-
-            knownExceptionTypes ??= new[] { typeof(ValidationException) };
-
-            problemDetailsOptions ??= options => SetProblemDetailsOptions(options, enviroment, knownExceptionTypes);
-
-            mvcOptions ??= options =>
-            {
-                options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
-            };
-
-            newtonsoftOptions ??= options =>
-            {
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                options.SerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
-                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                options.SerializerSettings.Converters.Add(new ValueTrimConverter());
-            };
-
             services
-                .AddRouting(routeOptions)
-                .AddProblemDetails(problemDetailsOptions)
-                .AddControllers(mvcOptions)
-                .AddNewtonsoftJson(newtonsoftOptions);
+                .AddRouting()
+                .AddProblemDetails(options => SetProblemDetailsOptions(options, enviroment))
+                .AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.Converters.Add(new ValueTrimConverter());
+                });
 
             return services;
         }
 
-        private static void SetProblemDetailsOptions(ProblemDetailsOptions options, IHostEnvironment enviroment, Type[] knownExceptionTypes)
+        private static void SetProblemDetailsOptions(ProblemDetailsOptions options, IHostEnvironment enviroment)
         {
+            Type[] knownExceptionTypes = new[] { typeof(ValidationException), typeof(NotFoundException) };
+
             options.IncludeExceptionDetails = (_, exception) =>
                 enviroment.IsDevelopment() &&
                 !knownExceptionTypes.Contains(exception.GetType());

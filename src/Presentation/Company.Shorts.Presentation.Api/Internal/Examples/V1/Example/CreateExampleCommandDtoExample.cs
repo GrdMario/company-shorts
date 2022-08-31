@@ -7,7 +7,7 @@
     {
         public CreateExampleCommandDto GetExamples()
         {
-            return new("My name.");
+            return new("My name.", true, true, true);
         }
     }
 }

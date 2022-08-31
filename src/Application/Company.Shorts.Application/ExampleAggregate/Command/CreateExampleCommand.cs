@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public record CreateExampleCommand(string Name) : IRequest;
+    public record CreateExampleCommand(string Name, bool ThrowCustomException, bool ThrowNotFoundException, bool ThorwInternalException) : IRequest;
 
     public class CreateExampleCommandValidator : AbstractValidator<CreateExampleCommand>
     {
@@ -29,6 +29,21 @@
 
         protected override async Task Handle(CreateExampleCommand request, CancellationToken cancellationToken)
         {
+            if (request.ThrowCustomException)
+            {
+                throw new Blocks.Common.Exceptions.ValidationException("This is a custom error.");
+            }
+
+            if (request.ThrowNotFoundException)
+            {
+                throw new Blocks.Common.Exceptions.NotFoundException("Resource not found.");
+            }
+
+            if (request.ThorwInternalException)
+            {
+                throw new Exception("Unhandled exception");
+            }
+
             Example example = new(Guid.NewGuid(), request.Name);
 
             await this.exampleAdapter.CreateAsync(example, cancellationToken);

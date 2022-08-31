@@ -2,6 +2,6 @@
 {
     public record GetExampleQueryDto(Guid Id): IApiDto;
     public record GetExamplesQueryDto(string? Name, int? Page, int? Size) : IApiDto;
-    public record CreateExampleCommandDto(string Name) : IApiDto;
+    public record CreateExampleCommandDto(string Name, bool ThrowCustomException, bool ThrowNotFoundException, bool ThorwInternalException) : IApiDto;
     public record UpdateExampleCommandDto(string Name) : IApiDto;
 }
