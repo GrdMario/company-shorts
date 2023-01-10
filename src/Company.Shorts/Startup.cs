@@ -5,6 +5,7 @@
     using Company.Shorts.Blocks.Common.Serilog.Configuration;
     using Company.Shorts.Blocks.Common.Swagger.Configuration;
     using Company.Shorts.Blocks.Presentation.Api.Configuration;
+    using Company.Shorts.Infrastructure.Db.Postgres;
     using Company.Shorts.Infrastructure.ExampleAdapter;
     using Company.Shorts.Presentation.Api;
     using Hellang.Middleware.ProblemDetails;
@@ -28,10 +29,16 @@
                 .GetSection(ExampleAdapterSettings.Key)
                 .Get<ExampleAdapterSettings>();
 
+        public PostgresAdapterSettings PostgresAdapterSettings =>
+            Configuration
+                .GetSection(PostgresAdapterSettings.Key)
+                .Get<PostgresAdapterSettings>();
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
             services.AddHealthChecks();
+            services.AddPostgresDatabaseLayer(PostgresAdapterSettings);
             services.AddInfrastructureExampleAdapter(ExampleAdapterSettings);
             services.AddApplicationLayer();
             services.AddPresentationLayer(Environment);
@@ -46,6 +53,8 @@
             {
                 app.UseHsts();
             }
+
+            app.MigratePostgresDb();
 
             app.UseSwaggerConfiguration();
 
