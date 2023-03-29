@@ -1,6 +1,8 @@
 ﻿namespace Company.Shorts.Infrastructure.Db.Postgres
 {
+    using Company.Graphql.Application.Contracts.Db;
     using Company.Shorts.Infrastructure.Db.Postgres.Internal;
+    using Company.Shorts.Infrastructure.Db.Postgres.Internal.Repositories;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -12,9 +14,10 @@
             services.AddDbContext<PostgresDbContext>(options =>
             {
                 options.UseNpgsql(settings.Url);
-            }, ServiceLifetime.Transient);
+            });
 
-            DatabaseDependencyInjection.AddRepositories<PostgresDbContext>(services);
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

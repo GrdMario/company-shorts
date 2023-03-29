@@ -56,6 +56,8 @@
 
             app.MigratePostgresDb();
 
+            app.MigratePostgresDb();
+
             app.UseSwaggerConfiguration();
 
             app.UseHttpsRedirection();

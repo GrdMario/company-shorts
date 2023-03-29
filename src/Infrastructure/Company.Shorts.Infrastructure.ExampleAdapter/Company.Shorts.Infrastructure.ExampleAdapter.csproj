@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Company.Shorts.Application.Contracts\Company.Shorts.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\Blocks\Company.Shorts.Blocks.Application.Contracts\Company.Shorts.Blocks.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\Blocks\Company.Shorts.Blocks.Common.Mapping.Core\Company.Shorts.Blocks.Common.Mapping.Core.csproj" />
   </ItemGroup>
 
