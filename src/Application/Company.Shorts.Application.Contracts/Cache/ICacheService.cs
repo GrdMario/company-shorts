@@ -2,8 +2,6 @@
 {
     public interface ICacheService
     {
-        T Get<T>(string key);
-
-        T Add<T>(string key, T item);
+        Task<T> GetOrAdd<T>(string key, Func<Task<T>> fun);
     }
 }

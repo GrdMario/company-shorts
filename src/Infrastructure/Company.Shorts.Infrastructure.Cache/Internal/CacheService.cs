@@ -12,14 +12,18 @@
             _cache = cache;
         }
 
-        public T Add<T>(string key, T item)
+        public async Task<T> GetOrAdd<T>(string key, Func<Task<T>> fun)
         {
-            return this._cache.Set(key, item);
-        }
+            var item = this._cache.Get<T>(key);
 
-        public T Get<T>(string key)
-        {
-            return this._cache.Get<T>(key);
+            if (item is null)
+            {
+                item = await fun();
+
+                this._cache.Set(key, item);
+            }
+
+            return item;
         }
     }
 }

@@ -25,16 +25,9 @@
 
         public async Task<List<User>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
-            var users = this.cacheService.Get<List<User>>(Key);
-            
-            if (users is null)
-            {
-                users = await this.userRepository.GetUsersAsync();
+            var items = await this.cacheService.GetOrAdd<List<User>>(Key, this.userRepository.GetUsersAsync);
 
-                this.cacheService.Add(Key, users);
-            }
-
-            return users;
+            return items;
         }
     }
 }
