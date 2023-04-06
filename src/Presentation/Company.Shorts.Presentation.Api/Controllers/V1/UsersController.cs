@@ -4,13 +4,12 @@
     using MediatR;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Company.Shorts.Application.ExampleAggregate.Common.Responses;
-    using Company.Shorts.Presentation.Api.Controllers.V1.Models.Examples;
     using Company.Shorts.Presentation.Api.Internal.Constants;
     using Swashbuckle.AspNetCore.Annotations;
     using Company.Shorts.Application.UserAggregate.Query;
     using Company.Shorts.Domain;
     using Company.Shorts.Application.UserAggregate.Command;
+    using Company.Shorts.Presentation.Api.Controllers.V1.Models.Users;
 
     [ApiVersion(ApiVersions.V1)]
     public class UsersController : ApiControllerBase

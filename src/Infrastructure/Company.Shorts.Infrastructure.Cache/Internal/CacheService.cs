@@ -3,7 +3,7 @@
     using Company.Shorts.Application.Contracts.Cache;
     using Microsoft.Extensions.Caching.Memory;
 
-    internal class CacheService : ICacheService
+    internal sealed class CacheService : ICacheService
     {
         private readonly IMemoryCache _cache;
 
@@ -21,18 +21,5 @@
         {
             return this._cache.Get<T>(key);
         }
-
-        public T GetOrAdd<T>(string key, T item)
-        {
-            var cached = this._cache.Get<T>(key);
-
-            if (cached is null)
-            {
-                cached = this.Add(key, item);
-            }
-
-            return cached;
-        }
-   
     }
 }

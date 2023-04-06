@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Presentation.Api.Controllers.V1.Models.Examples
+﻿namespace Company.Shorts.Presentation.Api.Controllers.V1.Models.Users
 {
     using System;
 
