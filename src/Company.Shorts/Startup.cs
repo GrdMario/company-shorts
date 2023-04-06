@@ -9,7 +9,7 @@
     using Company.Shorts.Infrastructure.ExampleAdapter;
     using Company.Shorts.Presentation.Api;
     using Hellang.Middleware.ProblemDetails;
-
+    using Company.Shorts.Infrastructure.Cache;
     public sealed class Startup
     {
         public Startup(
@@ -36,6 +36,7 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCache();
             services.AddCors();
             services.AddHealthChecks();
             services.AddPostgresDatabaseLayer(PostgresAdapterSettings);
@@ -53,8 +54,6 @@
             {
                 app.UseHsts();
             }
-
-            app.MigratePostgresDb();
 
             app.MigratePostgresDb();
 
