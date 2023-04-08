@@ -10,6 +10,8 @@
     using Company.Shorts.Presentation.Api;
     using Hellang.Middleware.ProblemDetails;
     using Company.Shorts.Infrastructure.Cache;
+    using Company.Shorts.Infrastructure.Cache.Redis;
+
     public sealed class Startup
     {
         public Startup(
@@ -34,9 +36,14 @@
                 .GetSection(PostgresAdapterSettings.Key)
                 .Get<PostgresAdapterSettings>();
 
+        public RedisAdapterSettings ReddisAdapterSettings =>
+            Configuration
+                .GetSection(RedisAdapterSettings.Key)
+                .Get<RedisAdapterSettings>();
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCache();
+            services.AddReddisCache(ReddisAdapterSettings);
             services.AddCors();
             services.AddHealthChecks();
             services.AddPostgresDatabaseLayer(PostgresAdapterSettings);
