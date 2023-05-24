@@ -22,7 +22,10 @@
             this IServiceCollection services,
             params Assembly[] assemblies)
         {
-            services.AddMediatR(assemblies);
+            services.AddMediatR(c =>
+            {
+                c.RegisterServicesFromAssemblies(assemblies);
+            });
             services.AddValidatorsFromAssemblies(assemblies, includeInternalTypes: true);
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

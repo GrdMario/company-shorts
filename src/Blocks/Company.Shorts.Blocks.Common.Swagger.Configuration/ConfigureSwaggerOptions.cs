@@ -30,9 +30,9 @@
 
         private OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
         {
-            SwaggerInfo? swaggerInfo = _configuration
+            SwaggerInfo swaggerInfo = _configuration
                 .GetSection(nameof(SwaggerInfo))
-                .Get<SwaggerInfo>();
+                .Get<SwaggerInfo>() ?? new SwaggerInfo();
 
             var info = new OpenApiInfo()
             {
@@ -51,7 +51,7 @@
                 };
             }
 
-            if (swaggerInfo.Licence is not null)
+            if (swaggerInfo?.Licence is not null)
             {
                 info.License = new OpenApiLicense()
                 {

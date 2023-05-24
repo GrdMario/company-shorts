@@ -18,7 +18,7 @@
         }
     }
 
-    internal sealed class CreateExampleCommandHandler : AsyncRequestHandler<CreateExampleCommand>
+    internal sealed class CreateExampleCommandHandler : IRequestHandler<CreateExampleCommand>
     {
         private readonly IExampleAdapter exampleAdapter;
 
@@ -27,7 +27,7 @@
             this.exampleAdapter = exampleAdapter;
         }
 
-        protected override async Task Handle(CreateExampleCommand request, CancellationToken cancellationToken)
+        public async Task Handle(CreateExampleCommand request, CancellationToken cancellationToken)
         {
             Example example = new(Guid.NewGuid(), request.Name);
 

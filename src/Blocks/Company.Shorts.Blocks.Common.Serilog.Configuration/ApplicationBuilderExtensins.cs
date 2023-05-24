@@ -49,7 +49,7 @@
         private static LogEventLevel ExcludeHealthChecks(
             HttpContext httpContext,
             double _,
-            Exception exception)
+            Exception? exception)
         {
             if (IsError(httpContext))
             {

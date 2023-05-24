@@ -22,7 +22,7 @@
         }
     }
 
-    internal sealed class UpdateExampleCommandHandler : AsyncRequestHandler<UpdateExampleCommand>
+    internal sealed class UpdateExampleCommandHandler : IRequestHandler<UpdateExampleCommand>
     {
         private readonly IExampleAdapter _exampleAdapter;
 
@@ -31,7 +31,7 @@
             _exampleAdapter = exampleAdapter;
         }
 
-        protected override async Task Handle(UpdateExampleCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateExampleCommand request, CancellationToken cancellationToken)
         {
             Example example = await _exampleAdapter.GetByIdAsync(request.Id, cancellationToken);
 
