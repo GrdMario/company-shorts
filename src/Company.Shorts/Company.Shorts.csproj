@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>cce98938-947d-45b7-86fe-161ef15f8c52</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
@@ -15,6 +14,7 @@
     <ProjectReference Include="..\Application\Company.Shorts.Application\Company.Shorts.Application.csproj" />
     <ProjectReference Include="..\Blocks\Company.Shorts.Blocks.Bootstrap\Company.Shorts.Blocks.Bootstrap.csproj" />
     <ProjectReference Include="..\Blocks\Company.Shorts.Blocks.Common.Mapping.Configuration\Company.Shorts.Blocks.Common.Mapping.Configuration.csproj" />
+    <ProjectReference Include="..\Infrastructure\Company.Shorts.Infrastructure.Db.Postgres\Company.Shorts.Infrastructure.Db.Postgres.csproj" />
     <ProjectReference Include="..\Infrastructure\Company.Shorts.Infrastructure.ExampleAdapter\Company.Shorts.Infrastructure.ExampleAdapter.csproj" />
     <ProjectReference Include="..\Presentation\Company.Shorts.Presentation.Api\Company.Shorts.Presentation.Api.csproj" />
   </ItemGroup>

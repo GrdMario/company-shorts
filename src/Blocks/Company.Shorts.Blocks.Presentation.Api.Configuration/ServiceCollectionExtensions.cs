@@ -19,7 +19,7 @@
             this IServiceCollection services,
             IHostEnvironment enviroment,
             Action<RouteOptions>? routeOptions = null,
-            Action<ProblemDetailsOptions>? problemDetailsOptions = null,
+            Action<Hellang.Middleware.ProblemDetails.ProblemDetailsOptions>? problemDetailsOptions = null,
             Action<MvcOptions>? mvcOptions = null,
             Action<MvcNewtonsoftJsonOptions>? newtonsoftOptions = null,
             Type[]? knownExceptionTypes = null)
@@ -53,7 +53,7 @@
             return services;
         }
 
-        private static void SetProblemDetailsOptions(ProblemDetailsOptions options, IHostEnvironment enviroment, Type[] knownExceptionTypes)
+        private static void SetProblemDetailsOptions(Hellang.Middleware.ProblemDetails.ProblemDetailsOptions options, IHostEnvironment enviroment, Type[] knownExceptionTypes)
         {
             options.IncludeExceptionDetails = (_, exception) =>
                 enviroment.IsDevelopment() &&
