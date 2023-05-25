@@ -2,6 +2,7 @@
 {
     internal static class ApiTags
     {
-        public const string Examples = "Examples";
+        public const string Examples = nameof(Examples);
+        public const string Users = nameof(Users);
     }
 }
