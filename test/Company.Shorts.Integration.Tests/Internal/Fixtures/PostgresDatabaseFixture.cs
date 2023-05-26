@@ -1,14 +1,16 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal
+﻿namespace Company.Shorts.Integration.Tests.Internal.Fixtures
 {
+    using Company.Shorts.Integration.Tests.Internal.Postgres;
     using DotNet.Testcontainers.Builders;
     using System;
     using Testcontainers.PostgreSql;
 
-    public class DatabaseFixture : IDisposable
+    public class PostgresDatabaseFixture : IDisposable
     {
         private bool _disposed;
+        private IEnviromentVariableManager eventVariableManager = new PostgresEnviromentVariableManager();
 
-        public DatabaseFixture()
+        public PostgresDatabaseFixture()
         {
             PqsqlDatabase = new PostgreSqlBuilder()
                 .WithImage(PostgreSqlContainerConstants.Image)
@@ -21,7 +23,7 @@
 
             PqsqlDatabase.StartAsync().Wait();
 
-            EnvironmentUtils.SetTestDatabaseConnectionString(PqsqlDatabase.GetConnectionString());
+            this.eventVariableManager.Set(PqsqlDatabase.GetConnectionString());
         }
 
         public PostgreSqlContainer PqsqlDatabase { get; }

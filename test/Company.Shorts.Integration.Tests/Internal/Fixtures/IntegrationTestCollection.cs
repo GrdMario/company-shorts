@@ -1,10 +1,10 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal
+﻿namespace Company.Shorts.Integration.Tests.Internal.Fixtures
 {
     using Xunit;
 
     [CollectionDefinition(CollectionFixtureConstants.Integration)]
     public class IntegrationTestCollection
-        : ICollectionFixture<DatabaseFixture>
+        : ICollectionFixture<PostgresDatabaseFixture>
         , ICollectionFixture<WebApplicationFactoryFixture>
     {
     }

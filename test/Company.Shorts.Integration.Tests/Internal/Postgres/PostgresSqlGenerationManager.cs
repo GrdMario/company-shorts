@@ -1,18 +1,14 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal
+﻿namespace Company.Shorts.Integration.Tests.Internal.Postgres
 {
+    using Company.Shorts.Integration.Tests.Internal.Common;
     using Newtonsoft.Json.Linq;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using System.Text;
-    using Xunit.Sdk;
 
-    public record SqlItem(string Insert, string Delete);
-
-    public static class SqlGenerationUtility
+    internal sealed class PostgresSqlGenerationManager : ISqlGenerationManager
     {
-        public static SqlItem Generate(Dictionary<string, object[]> obj)
+        public GenerationItem Generate(Dictionary<string, object[]> obj)
         {
             var builder = new StringBuilder();
 
@@ -59,7 +55,7 @@
                             value = $"'{iterable[i].First}'".Replace(',', '.');
                         }
 
-                        if (type == JTokenType.String || type == JTokenType.Date || type== JTokenType.Guid)
+                        if (type == JTokenType.String || type == JTokenType.Date || type == JTokenType.Guid)
                         {
                             value = $"'{iterable[i].First}'";
                         }
@@ -88,41 +84,7 @@
 
             builder.Clear();
 
-            return new SqlItem(insert, delete);
-        }
-
-
-    }
-
-    public class SeedAttribute : BeforeAfterTestAttribute
-    {
-        private SqlItem sqlItem = default!;
-
-        public SeedAttribute(string filePath)
-        {
-            FilePath = filePath;
-        }
-
-        public string FilePath { get; }
-
-        public override void After(MethodInfo methodUnderTest)
-        {
-            DbConnectionUtility.Execute(this.sqlItem.Delete);
-
-            base.After(methodUnderTest);
-        }
-
-        public override void Before(MethodInfo methodUnderTest)
-        {
-            var attribute = methodUnderTest.GetCustomAttribute<SeedAttribute>() ?? throw new ArgumentException(nameof(methodUnderTest));
-
-            var obj = FileUtils.Read(attribute.FilePath);
-
-            this.sqlItem = SqlGenerationUtility.Generate(obj);
-
-            DbConnectionUtility.Execute(this.sqlItem.Insert);
-
-            base.Before(methodUnderTest);
+            return new GenerationItem(insert, delete);
         }
     }
 }

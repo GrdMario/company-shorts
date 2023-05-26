@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal
+﻿namespace Company.Shorts.Integration.Tests.Internal.Fixtures
 {
     using Company.Shorts;
     using Microsoft.AspNetCore.Mvc.Testing;
@@ -9,7 +9,7 @@
     {
         private bool _disposed;
 
-        public WebApplicationFactoryFixture(DatabaseFixture fixture)
+        public WebApplicationFactoryFixture(PostgresDatabaseFixture fixture)
         {
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "development");
 

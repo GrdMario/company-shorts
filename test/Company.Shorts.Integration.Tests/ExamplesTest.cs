@@ -1,6 +1,6 @@
 ﻿namespace Company.Shorts.Integration.Tests
 {
-    using Company.Shorts.Integration.Tests.Internal;
+    using Company.Shorts.Integration.Tests.Internal.Fixtures;
     using System.Threading.Tasks;
     using Xunit;
 

@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal
+﻿namespace Company.Shorts.Integration.Tests.Internal.Common
 {
     using Newtonsoft.Json;
     using System;
@@ -6,15 +6,15 @@
     using System.IO;
     using System.Reflection;
 
-    public static class FileUtils
+    internal sealed class FileManager : IFileManager
     {
-        public static Dictionary<string, object[]> Read(string path)
+        public Dictionary<string, object[]> Read(string path)
         {
             var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             if (directory is null)
             {
-                throw new ArgumentNullException(nameof(directory)); 
+                throw new ArgumentNullException(nameof(directory));
             }
 
             var parsedDirectory = directory.Replace(@"\bin\Debug\net7.0", "");
@@ -25,7 +25,7 @@
 
             var result = JsonConvert.DeserializeObject<Dictionary<string, object[]>>(json);
 
-            return result ?? throw new ArgumentNullException(nameof(result));    
+            return result ?? throw new ArgumentNullException(nameof(result));
         }
     }
 }

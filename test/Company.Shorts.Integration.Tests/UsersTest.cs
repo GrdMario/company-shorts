@@ -1,6 +1,7 @@
 namespace Company.Shorts.Integration.Tests
 {
-    using Company.Shorts.Integration.Tests.Internal;
+    using Company.Shorts.Integration.Tests.Internal.Fixtures;
+    using Company.Shorts.Integration.Tests.Internal.Postgres;
     using System.Threading.Tasks;
     using Xunit;
 
@@ -15,7 +16,7 @@ namespace Company.Shorts.Integration.Tests
         }
 
         [Fact]
-        [Seed("/Resources/Users/GetUsers.json")]
+        [PostgresSeed("/Resources/Users/GetUsers.json")]
         public async Task Test1()
         {
             var response = await this.app.HttpClient.GetAsync("/api/v1/users");

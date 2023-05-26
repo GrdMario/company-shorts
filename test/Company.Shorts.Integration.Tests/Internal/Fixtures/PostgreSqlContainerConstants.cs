@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal
+﻿namespace Company.Shorts.Integration.Tests.Internal.Fixtures
 {
     public static class PostgreSqlContainerConstants
     {
@@ -7,10 +7,5 @@
         public static string Username = "postgres";
         public static string Password = "postgres";
         public static int Port = 5432;
-    }
-
-    public static class CollectionFixtureConstants
-    {
-        public const string Integration = "Integration";
     }
 }
