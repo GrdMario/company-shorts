@@ -31,6 +31,21 @@
             builder
                 .Property(p => p.ProfilePicture)
                 .IsRequired();
+
+            builder
+                .Property(p => p.Boolean);
+
+            builder
+                .Property(p => p.Integer);
+
+            builder
+                .Property(p => p.Long);
+
+            builder
+                .Property(p => p.Decimal);
+
+            builder
+                .Property(p => p.Date);
         }
     }
 }
