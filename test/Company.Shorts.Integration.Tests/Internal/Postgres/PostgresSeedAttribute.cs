@@ -34,9 +34,7 @@
 
         public override void Before(MethodInfo methodUnderTest)
         {
-            var attribute = methodUnderTest.GetCustomAttribute<PostgresSeedAttribute>() ?? throw new ArgumentException(nameof(methodUnderTest));
-
-            var obj = fileManager.Read(attribute.FilePath);
+            var obj = fileManager.Read(this.FilePath);
 
             generationItem = sqlGenerationManager.Generate(obj);
 
