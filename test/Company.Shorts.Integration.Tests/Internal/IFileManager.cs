@@ -4,6 +4,6 @@
 
     public interface IFileManager
     {
-        Dictionary<string, object[]> Read(string path);
+        Dictionary<string, object> Read(string path);
     }
 }

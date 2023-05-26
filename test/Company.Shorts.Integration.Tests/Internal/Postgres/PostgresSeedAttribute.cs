@@ -2,13 +2,12 @@
 {
     using Company.Shorts.Integration.Tests.Internal;
     using Company.Shorts.Integration.Tests.Internal.Common;
-    using System;
     using System.Reflection;
     using Xunit.Sdk;
 
     public sealed class PostgresSeedAttribute : BeforeAfterTestAttribute
     {
-        private GenerationItem generationItem = default!;
+        private GenerationResult generationItem = default!;
 
         private readonly ISeedDatabaseManager dbConnectionUtility = new PostgresSeedDatabaseManager();
 

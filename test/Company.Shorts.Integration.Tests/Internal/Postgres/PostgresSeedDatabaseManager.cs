@@ -8,6 +8,7 @@
 
         public void Execute(string command)
         {
+            // TODO: Wrap in try catch
             var connectionString = this.enviromentVariableManager.Get();
 
             using var connection = new NpgsqlConnection(connectionString);

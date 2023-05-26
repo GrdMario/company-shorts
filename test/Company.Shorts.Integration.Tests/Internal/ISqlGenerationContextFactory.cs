@@ -3,8 +3,8 @@
     using Company.Shorts.Integration.Tests.Internal.Common;
     using System.Collections.Generic;
 
-    public interface ISqlGenerationManager
+    public interface ISqlGenerationContextFactory
     {
-        GenerationResult Generate(Dictionary<string, object> obj);
+        GenerationContext CreateContext(Dictionary<string, object> obj);
     }
 }

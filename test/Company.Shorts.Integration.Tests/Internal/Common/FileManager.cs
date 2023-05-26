@@ -8,7 +8,7 @@
 
     internal sealed class FileManager : IFileManager
     {
-        public Dictionary<string, object[]> Read(string path)
+        public Dictionary<string, object> Read(string path)
         {
             var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -23,7 +23,7 @@
 
             string json = reader.ReadToEnd();
 
-            var result = JsonConvert.DeserializeObject<Dictionary<string, object[]>>(json);
+            var result = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
 
             return result ?? throw new ArgumentNullException(nameof(result));
         }

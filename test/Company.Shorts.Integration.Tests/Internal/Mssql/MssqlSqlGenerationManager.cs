@@ -5,7 +5,7 @@
 
     internal sealed class MssqlSqlGenerationManager : ISqlGenerationManager
     {
-        public GenerationItem Generate(Dictionary<string, object[]> obj)
+        public GenerationResult Generate(Dictionary<string, object> obj)
         {
             throw new System.NotImplementedException();
         }
