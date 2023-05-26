@@ -8,7 +8,6 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<PostgresDatabaseFixture>();
-            services.AddSingleton<WebApplicationFactoryFixture>();
         }
     }
 }
