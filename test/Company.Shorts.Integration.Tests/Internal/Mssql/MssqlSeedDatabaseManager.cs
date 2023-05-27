@@ -2,6 +2,11 @@
 {
     internal sealed class MssqlSeedDatabaseManager : ISeedDatabaseManager
     {
+        public void Delete()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Execute(string command)
         {
             throw new System.NotImplementedException();

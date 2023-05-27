@@ -1,7 +1,11 @@
 namespace Company.Shorts.Integration.Tests
 {
+    using Company.Shorts.Domain;
     using Company.Shorts.Integration.Tests.Internal.Fixtures;
     using Company.Shorts.Integration.Tests.Internal.Postgres;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Xunit;
 
@@ -17,11 +21,13 @@ namespace Company.Shorts.Integration.Tests
 
         [Fact]
         [PostgresSeed("/Resources/Users/GetUsers.json")]
-        public async Task Test1()
+        public async Task GetUsers_Should_ReturnTwoUsers()
         {
             var response = await this.app.HttpClient.GetAsync("/api/v1/users");
 
-            var x = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<User>>(await response.Content.ReadAsStringAsync());
+
+            result?.Count.Should().Be(2);
         }
     }
 }

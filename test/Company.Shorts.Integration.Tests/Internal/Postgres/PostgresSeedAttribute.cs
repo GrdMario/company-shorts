@@ -17,27 +17,25 @@
 
         public PostgresSeedAttribute(string filePath)
         {
-            // TODO: Add factory for resolving type of database.
-
-            FilePath = filePath;
+            this.FilePath = filePath;
         }
 
         public string FilePath { get; }
 
         public override void After(MethodInfo methodUnderTest)
         {
-            dbConnectionUtility.Execute(generationItem.Delete);
+            this.dbConnectionUtility.Delete();
 
             base.After(methodUnderTest);
         }
 
         public override void Before(MethodInfo methodUnderTest)
         {
-            var obj = fileManager.Read(this.FilePath);
+            var obj = this.fileManager.Read(this.FilePath);
 
-            generationItem = sqlGenerationManager.Generate(obj);
+            this.generationItem = this.sqlGenerationManager.Generate(obj);
 
-            dbConnectionUtility.Execute(generationItem.Insert);
+            this.dbConnectionUtility.Execute(generationItem.Insert);
 
             base.Before(methodUnderTest);
         }

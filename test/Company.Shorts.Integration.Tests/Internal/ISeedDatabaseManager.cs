@@ -3,5 +3,7 @@
     public interface ISeedDatabaseManager
     {
         void Execute(string command);
+
+        void Delete();
     }
 }
