@@ -30,10 +30,10 @@
 
             if (dbContext is null)
             {
-                throw new ArgumentNullException(nameof(dbContext));
+                throw new ApplicationException(nameof(dbContext));
             }
 
-            if (dbContext.Database.GetPendingMigrations().Count() > 0)
+            if (dbContext.Database.GetPendingMigrations().Any())
             {
                 dbContext.Database.Migrate();
             }

@@ -8,11 +8,11 @@
     public class PostgresDatabaseFixture : IDisposable
     {
         private bool _disposed;
-        private IEnviromentVariableManager eventVariableManager = new PostgresEnviromentVariableManager();
+        private readonly IEnviromentVariableManager eventVariableManager = new PostgresEnviromentVariableManager();
 
         public PostgresDatabaseFixture()
         {
-            PqsqlDatabase = new PostgreSqlBuilder()
+            this.PqsqlDatabase = new PostgreSqlBuilder()
                 .WithImage(PostgreSqlContainerConstants.Image)
                 .WithDatabase(PostgreSqlContainerConstants.Database)
                 .WithUsername(PostgreSqlContainerConstants.Username)
@@ -21,7 +21,7 @@
                 .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(PostgreSqlContainerConstants.Port))
                 .Build();
 
-            PqsqlDatabase.StartAsync().Wait();
+            this.PqsqlDatabase.StartAsync().Wait();
 
             this.eventVariableManager.Set(PqsqlDatabase.GetConnectionString());
         }

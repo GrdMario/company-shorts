@@ -9,14 +9,14 @@
     {
         private bool _disposed;
 
-        public WebApplicationFactoryFixture(PostgresDatabaseFixture fixture)
+        public WebApplicationFactoryFixture(PostgresDatabaseFixture fixture, MockWebServerFixture webServerFixture)
         {
-            Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "development");
+            EnvironmentUtils.SetTestEnvironment();
 
             var application = new WebApplicationFactory<Program>().WithWebHostBuilder(conf =>
             {
-
                 conf.UseSetting("PostgresAdapterSettings:Url", fixture.PqsqlDatabase.GetConnectionString());
+                conf.UseSetting("ExternalApiSettings:Url", webServerFixture.Url);
             });
 
             HttpClient = application.CreateClient();

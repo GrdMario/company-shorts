@@ -4,8 +4,9 @@
 
     [CollectionDefinition(CollectionFixtureConstants.Integration)]
     public class IntegrationTestCollection
-        : ICollectionFixture<PostgresDatabaseFixture>
-        , ICollectionFixture<WebApplicationFactoryFixture>
+        : ICollectionFixture<PostgresDatabaseFixture>,
+         ICollectionFixture<MockWebServerFixture>,
+        ICollectionFixture<WebApplicationFactoryFixture>
     {
     }
 }

@@ -26,7 +26,7 @@
         {
             var connectionString = this.enviromentVariableManager.Get();
 
-            List<string> toDelete = new List<string>();
+            List<string> toDelete = new();
 
             using var connection = new NpgsqlConnection(connectionString);
             connection.Open();
@@ -38,7 +38,6 @@
             while(reader.Read())
             {
                 toDelete.Add(reader.GetString(0));
-                
             }
 
             reader.Close();
@@ -48,8 +47,6 @@
                 var delete = new NpgsqlCommand($"DELETE FROM {item}", connection);
                 delete.ExecuteNonQuery();
             }
-
-            
 
             connection.Close();
         }

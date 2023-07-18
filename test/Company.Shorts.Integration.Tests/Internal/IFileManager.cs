@@ -1,9 +1,9 @@
 ﻿namespace Company.Shorts.Integration.Tests.Internal
 {
-    using System.Collections.Generic;
-
     public interface IFileManager
     {
-        Dictionary<string, object> Read(string path);
+        T Read<T>(string path);
+
+        string Read(string path);
     }
 }

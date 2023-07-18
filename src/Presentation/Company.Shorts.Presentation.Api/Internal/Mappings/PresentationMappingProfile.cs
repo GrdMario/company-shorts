@@ -2,10 +2,13 @@
 {
     using Company.Shorts.Application.ExampleAggregate.Command;
     using Company.Shorts.Application.ExampleAggregate.Query;
+    using Company.Shorts.Application.PetsAggregate.Queries;
     using Company.Shorts.Application.UserAggregate.Command;
     using Company.Shorts.Application.UserAggregate.Query;
     using Company.Shorts.Blocks.Common.Mapping.Core;
+    using Company.Shorts.Domain;
     using Company.Shorts.Presentation.Api.Controllers.V1.Models.Examples;
+    using Company.Shorts.Presentation.Api.Controllers.V1.Models.Pets;
     using Company.Shorts.Presentation.Api.Controllers.V1.Models.Users;
 
     internal sealed class PresentationMappingProfile : MappingProfileBase
@@ -19,6 +22,9 @@
 
             CreateMap<GetUsersQueryDto, GetUsersQuery>();
             CreateMap<CreateUserCommandDto, CreateUserCommand>();
+
+            CreateMap<GetPetsDto, GetPetsQuery>();
+            CreateMap<Pet, PetResponse>();
         }
     }
 }

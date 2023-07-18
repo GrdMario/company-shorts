@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -29,6 +29,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Company.Shorts\Company.Shorts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ContentWithTargetPath Include="Resources\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>Resources\%(RecursiveDir)\%(Filename)%(Extension)</TargetPath>
+    </ContentWithTargetPath>
   </ItemGroup>
 
 

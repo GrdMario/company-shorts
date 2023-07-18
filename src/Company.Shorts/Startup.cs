@@ -7,6 +7,7 @@
     using Company.Shorts.Blocks.Presentation.Api.Configuration;
     using Company.Shorts.Infrastructure.Db.Postgres;
     using Company.Shorts.Infrastructure.ExampleAdapter;
+    using Company.Shorts.Infrastructure.Http.ExternalApi;
     using Company.Shorts.Presentation.Api;
     using Hellang.Middleware.ProblemDetails;
     using Microsoft.AspNetCore.Builder;
@@ -40,12 +41,18 @@
                 .GetSection(PostgresAdapterSettings.Key)
                 .Get<PostgresAdapterSettings>();
 
+        public ExternalApiSettings? ExternalApiSettings =>
+            Configuration
+                .GetSection(ExternalApiSettings.Key)
+                .Get<ExternalApiSettings>();
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
             services.AddHealthChecks();
             services.AddPostgresDatabaseLayer(PostgresAdapterSettings ?? throw new ArgumentException(nameof(PostgresAdapterSettings)));
             services.AddInfrastructureExampleAdapter(ExampleAdapterSettings ?? throw new ArgumentException(nameof(ExampleAdapterSettings)));
+            services.AddHttpExternalApiModule(ExternalApiSettings ?? throw new ArgumentException(nameof(ExternalApiSettings))); 
             services.AddApplicationLayer();
             services.AddPresentationLayer(Environment);
             services.AddAutoMapperConfiguration(AppDomain.CurrentDomain);

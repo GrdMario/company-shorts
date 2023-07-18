@@ -2,6 +2,7 @@
 {
     using Company.Shorts.Integration.Tests.Internal;
     using Company.Shorts.Integration.Tests.Internal.Common;
+    using System.Collections.Generic;
     using System.Reflection;
     using Xunit.Sdk;
 
@@ -31,7 +32,7 @@
 
         public override void Before(MethodInfo methodUnderTest)
         {
-            var obj = this.fileManager.Read(this.FilePath);
+            var obj = this.fileManager.Read<Dictionary<string, object>>(this.FilePath);
 
             this.generationItem = this.sqlGenerationManager.Generate(obj);
 

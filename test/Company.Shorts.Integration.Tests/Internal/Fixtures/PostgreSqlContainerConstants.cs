@@ -2,10 +2,10 @@
 {
     public static class PostgreSqlContainerConstants
     {
-        public static string Image = "postgres:15.1-alpine";
-        public static string Database = "ShortsUserDb";
-        public static string Username = "postgres";
-        public static string Password = "postgres";
-        public static int Port = 5432;
+        public const string Image = "postgres:15.1-alpine";
+        public const string Database = "ShortsUserDb";
+        public const string Username = "postgres";
+        public const string Password = "postgres";
+        public const int Port = 5432;
     }
 }

@@ -1,24 +1,13 @@
 ﻿namespace Company.Shorts.Integration.Tests
 {
     using Company.Shorts.Integration.Tests.Internal.Fixtures;
-    using System.Threading.Tasks;
     using Xunit;
 
     [Collection(CollectionFixtureConstants.Integration)]
     public class ExamplesTest
     {
-        private WebApplicationFactoryFixture app;
-        public ExamplesTest(WebApplicationFactoryFixture app)
+        public ExamplesTest()
         {
-            this.app = app;
-        }
-
-        [Fact]
-        public async Task Test2()
-        {
-
-            var response = await this.app.HttpClient.GetAsync("/api/v1/users");
-
         }
     }
 }

@@ -1,5 +1,6 @@
 namespace Company.Shorts.Integration.Tests
 {
+    using Company.Shorts.Application.PetsAggregate.Queries;
     using Company.Shorts.Domain;
     using Company.Shorts.Integration.Tests.Internal.Fixtures;
     using Company.Shorts.Integration.Tests.Internal.Postgres;
@@ -12,7 +13,7 @@ namespace Company.Shorts.Integration.Tests
     [Collection(CollectionFixtureConstants.Integration)]
     public class UsersTest
     {
-        private WebApplicationFactoryFixture app;
+        private readonly WebApplicationFactoryFixture app;
 
         public UsersTest(WebApplicationFactoryFixture app)
         {
