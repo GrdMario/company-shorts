@@ -5,10 +5,8 @@
     using Company.Shorts.Infrastructure.Http.ExternalApi.Tests.Internal.MockWebServer;
     using DotNet.Testcontainers.Builders;
     using DotNet.Testcontainers.Containers;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using System;
-    using System.Net.Http;
 
     public static class MockWebServerConstants
     {
@@ -35,13 +33,13 @@
             this.MockWebServerContainer.StartAsync().Wait();
 
             this.Url = $"http://{this.MockWebServerContainer.Hostname}:{this.MockWebServerContainer.GetMappedPublicPort(MockWebServerConstants.Port)}";
-            
+
             var services = new ServiceCollection();
-            
+
             services.AddHttpClient<IExternalApi, ExternalApiService>(opt => opt.BaseAddress = new Uri(this.Url));
-            
+
             this.Provider = services.BuildServiceProvider();
-            
+
             this.enviromentVariableManager.Set(this.Url);
         }
 

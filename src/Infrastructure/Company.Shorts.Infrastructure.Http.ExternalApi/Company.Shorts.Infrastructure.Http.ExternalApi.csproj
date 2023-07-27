@@ -8,6 +8,7 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  
   <ItemGroup>
     <InternalsVisibleTo Include ="Company.Shorts.Infrastructure.Http.ExternalApi.Tests"/>
   </ItemGroup>
