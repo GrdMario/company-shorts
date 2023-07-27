@@ -5,7 +5,7 @@
     [CollectionDefinition(CollectionFixtureConstants.Integration)]
     public class IntegrationTestCollection
         : ICollectionFixture<PostgresDatabaseFixture>,
-         ICollectionFixture<MockWebServerFixture>,
+        ICollectionFixture<MockWebServerFixture>,
         ICollectionFixture<WebApplicationFactoryFixture>
     {
     }

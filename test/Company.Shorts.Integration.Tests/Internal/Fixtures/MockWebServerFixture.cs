@@ -22,6 +22,7 @@
             this.MockWebServerContainer = new ContainerBuilder()
                 .WithImage(MockWebServerConstants.Image)
                 .WithPortBinding(MockWebServerConstants.Port)
+                .WithWaitStrategy(Wait.ForUnixContainer().UntilMessageIsLogged("INFO 1080 started on port: 1080"))
                 .Build();
 
             this.MockWebServerContainer.StartAsync().Wait();

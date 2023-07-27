@@ -1,7 +1,6 @@
 ﻿namespace Company.Shorts.Integration.Tests
 {
     using Company.Shorts.Integration.Tests.Internal.Fixtures;
-    using Company.Shorts.Integration.Tests.Internal.MockWebServer;
     using Microsoft.Extensions.DependencyInjection;
 
     public class Startup
