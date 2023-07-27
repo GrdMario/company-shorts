@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "Id": "a80c2003-4d7c-46c5-a4b7-8dd92905c11b",
+      "UserName": "test-one",
+      "Email": "test-one",
+      "Address": "test-one",
+      "ProfilePicture": "test-one",
+      "Boolean": true,
+      "Integer": 1,
+      "Long": 12,
+      "Decimal": 1.2,
+      "Date": "12/12/2023"
+    },
+    {
+      "Id": "219f804c-8a0a-43d4-80e2-33f4ea11d936",
+      "UserName": "test-one",
+      "Email": "test-one",
+      "Address": "test-one",
+      "ProfilePicture": "test-one",
+      "Boolean": true,
+      "Integer": 1,
+      "Long": 12,
+      "Decimal": 1.2,
+      "Date": "12/12/2023"
+    }
+  ]
+}

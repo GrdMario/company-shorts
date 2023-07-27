@@ -1,0 +1,20 @@
+{
+  "httpRequest": {
+    "path": "/pets",
+    "method": "GET"
+  },
+  "httpResponse": {
+    "body": [
+      {
+        "id": 1,
+        "name": "Test",
+        "tag": "Test"
+      },
+      {
+        "id": 2,
+        "name": "Test2",
+        "tag": "Test2"
+      }
+    ]
+  }
+}

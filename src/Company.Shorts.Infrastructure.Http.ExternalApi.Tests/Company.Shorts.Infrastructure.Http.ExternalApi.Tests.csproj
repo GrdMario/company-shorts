@@ -9,28 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+
     <PackageReference Include="FluentAssertions" Version="6.11.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.5" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="Testcontainers" Version="3.2.0" />
-    <PackageReference Include="Testcontainers.PostgreSql" Version="3.2.0" />
-    <PackageReference Include="Xunit.DependencyInjection" Version="8.7.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="3.1.2">
+    <PackageReference Include="coverlet.collector" Version="3.2.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Company.Shorts\Company.Shorts.csproj" />
+    <ProjectReference Include="..\Blocks\Company.Shorts.Blocks.Application.Contracts\Company.Shorts.Blocks.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Infrastructure\Company.Shorts.Infrastructure.Http.ExternalApi\Company.Shorts.Infrastructure.Http.ExternalApi.csproj" />
   </ItemGroup>
 
+  <!--Copies Files from Resource Folder to bin\debug\net7.0-->
+  <!--Easier way to read files in PostgresSeedAttribute-->
   <ItemGroup>
     <ContentWithTargetPath Include="Resources\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -38,13 +39,5 @@
     </ContentWithTargetPath>
   </ItemGroup>
 
-  <ItemGroup>
-    <ContentWithTargetPath Remove="Resources\Users\get-users.json" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
 
 </Project>

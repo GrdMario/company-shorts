@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include ="Company.Shorts.Infrastructure.Db.Postgres.Tests"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Application\Company.Shorts.Application.Contracts\Company.Shorts.Application.Contracts.csproj" />
   </ItemGroup>
 

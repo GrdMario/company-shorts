@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -8,9 +8,12 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include ="Company.Shorts.Infrastructure.Http.ExternalApi.Tests"/>
+  </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Company.Shorts.Application.Contracts\Company.Shorts.Application.Contracts.csproj" />
   </ItemGroup>
-
 </Project>

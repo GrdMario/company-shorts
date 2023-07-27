@@ -1,6 +1,5 @@
 namespace Company.Shorts.Integration.Tests
 {
-    using Company.Shorts.Application.PetsAggregate.Queries;
     using Company.Shorts.Domain;
     using Company.Shorts.Integration.Tests.Internal.Fixtures;
     using Company.Shorts.Integration.Tests.Internal.Postgres;
@@ -21,7 +20,7 @@ namespace Company.Shorts.Integration.Tests
         }
 
         [Fact]
-        [PostgresSeed("/Resources/Users/GetUsers.json")]
+        [PostgresSeed("/Resources/Users/get-users.json")]
         public async Task GetUsers_Should_ReturnTwoUsers()
         {
             var response = await this.app.HttpClient.GetAsync("/api/v1/users");
