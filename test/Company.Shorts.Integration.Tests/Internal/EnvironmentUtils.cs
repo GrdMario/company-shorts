@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal
 {
     using System;
 

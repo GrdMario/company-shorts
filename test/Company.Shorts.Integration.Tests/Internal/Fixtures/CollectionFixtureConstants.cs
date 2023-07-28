@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Fixtures
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Fixtures
 {
     public static class CollectionFixtureConstants
     {

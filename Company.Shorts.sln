@@ -67,7 +67,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Shorts.Blocks.Boots
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Shorts.Infrastructure.Db.Postgres", "src\Infrastructure\Company.Shorts.Infrastructure.Db.Postgres\Company.Shorts.Infrastructure.Db.Postgres.csproj", "{2BAA42E7-A1A0-42BD-8B29-00F69E452C79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Shorts.Integration.Tests", "test\Company.Shorts.Integration.Tests\Company.Shorts.Integration.Tests.csproj", "{C3EC2F65-7BF7-4AA8-BE97-E6A0A637D04E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Shorts.EndToEnd.Tests", "test\Company.Shorts.Integration.Tests\Company.Shorts.EndToEnd.Tests.csproj", "{C3EC2F65-7BF7-4AA8-BE97-E6A0A637D04E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Company.Shorts.Infrastructure.Http.ExternalApi", "src\Infrastructure\Company.Shorts.Infrastructure.Http.ExternalApi\Company.Shorts.Infrastructure.Http.ExternalApi.csproj", "{EDE2D6C6-C873-4731-B2CC-98E43811D714}"
 EndProject

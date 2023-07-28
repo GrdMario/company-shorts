@@ -1,8 +1,8 @@
-﻿namespace Company.Shorts.Integration.Tests
+﻿namespace Company.Shorts.EndToEnd.Tests
 {
     using Company.Shorts.Application.PetsAggregate.Queries;
-    using Company.Shorts.Integration.Tests.Internal.Fixtures;
-    using Company.Shorts.Integration.Tests.Internal.MockWebServer;
+    using Company.Shorts.EndToEnd.Tests.Internal.Fixtures;
+    using Company.Shorts.EndToEnd.Tests.Internal.MockWebServer;
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.Collections.Generic;

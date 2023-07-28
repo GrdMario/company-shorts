@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Mssql
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Mssql
 {
     using System;
 

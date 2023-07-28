@@ -1,6 +1,6 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Mssql
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Mssql
 {
-    using Company.Shorts.Integration.Tests.Internal.Common;
+    using Company.Shorts.EndToEnd.Tests.Internal.Common;
     using System.Collections.Generic;
 
     internal sealed class MssqlSqlGenerationManager : ISqlGenerationManager

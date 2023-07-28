@@ -1,6 +1,6 @@
-﻿namespace Company.Shorts.Integration.Tests
+﻿namespace Company.Shorts.EndToEnd.Tests
 {
-    using Company.Shorts.Integration.Tests.Internal.Fixtures;
+    using Company.Shorts.EndToEnd.Tests.Internal.Fixtures;
     using Microsoft.Extensions.DependencyInjection;
 
     public class Startup

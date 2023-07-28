@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Common
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Common
 {
     using Microsoft.VisualStudio.TestPlatform.ObjectModel.Engine.ClientProtocol;
     using Newtonsoft.Json;

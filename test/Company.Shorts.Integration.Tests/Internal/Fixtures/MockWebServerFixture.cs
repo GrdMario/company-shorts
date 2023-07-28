@@ -1,15 +1,9 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Fixtures
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Fixtures
 {
-    using Company.Shorts.Integration.Tests.Internal.MockWebServer;
+    using Company.Shorts.EndToEnd.Tests.Internal.MockWebServer;
     using DotNet.Testcontainers.Builders;
     using DotNet.Testcontainers.Containers;
     using System;
-
-    public static class MockWebServerConstants
-    {
-        public const string Image = "mockserver/mockserver";
-        public const int Port = 1080;
-    }
 
     public class MockWebServerFixture : IDisposable
     {

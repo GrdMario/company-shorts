@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Postgres
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Postgres
 {
     using System;
 

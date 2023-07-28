@@ -1,8 +1,8 @@
-namespace Company.Shorts.Integration.Tests
+namespace Company.Shorts.EndToEnd.Tests
 {
     using Company.Shorts.Domain;
-    using Company.Shorts.Integration.Tests.Internal.Fixtures;
-    using Company.Shorts.Integration.Tests.Internal.Postgres;
+    using Company.Shorts.EndToEnd.Tests.Internal.Fixtures;
+    using Company.Shorts.EndToEnd.Tests.Internal.Postgres;
     using FluentAssertions;
     using Newtonsoft.Json;
     using System.Collections.Generic;

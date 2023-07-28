@@ -1,7 +1,7 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.MockWebServer
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.MockWebServer
 {
-    using Company.Shorts.Integration.Tests.Internal;
-    using Company.Shorts.Integration.Tests.Internal.Common;
+    using Company.Shorts.EndToEnd.Tests.Internal;
+    using Company.Shorts.EndToEnd.Tests.Internal.Common;
     using System;
     using System.Net.Http;
     using System.Reflection;

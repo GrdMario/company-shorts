@@ -1,6 +1,6 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Fixtures
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Fixtures
 {
-    using Company.Shorts.Integration.Tests.Internal.Postgres;
+    using Company.Shorts.EndToEnd.Tests.Internal.Postgres;
     using DotNet.Testcontainers.Builders;
     using System;
     using Testcontainers.PostgreSql;

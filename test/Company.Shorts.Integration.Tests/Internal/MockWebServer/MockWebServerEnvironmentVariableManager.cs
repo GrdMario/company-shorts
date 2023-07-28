@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.MockWebServer
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.MockWebServer
 {
     using System;
 

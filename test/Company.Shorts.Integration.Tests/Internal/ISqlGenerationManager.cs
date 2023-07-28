@@ -1,6 +1,6 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal
 {
-    using Company.Shorts.Integration.Tests.Internal.Common;
+    using Company.Shorts.EndToEnd.Tests.Internal.Common;
     using System.Collections.Generic;
 
     public interface ISqlGenerationManager

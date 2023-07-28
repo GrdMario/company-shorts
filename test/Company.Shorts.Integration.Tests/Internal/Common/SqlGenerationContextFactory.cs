@@ -1,6 +1,6 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Common
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Common
 {
-    using Company.Shorts.Integration.Tests.Internal;
+    using Company.Shorts.EndToEnd.Tests.Internal;
     using Newtonsoft.Json.Linq;
     using System.Collections.Generic;
     using System.Linq;

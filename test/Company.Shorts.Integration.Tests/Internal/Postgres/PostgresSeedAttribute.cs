@@ -1,7 +1,7 @@
-﻿namespace Company.Shorts.Integration.Tests.Internal.Postgres
+﻿namespace Company.Shorts.EndToEnd.Tests.Internal.Postgres
 {
-    using Company.Shorts.Integration.Tests.Internal;
-    using Company.Shorts.Integration.Tests.Internal.Common;
+    using Company.Shorts.EndToEnd.Tests.Internal;
+    using Company.Shorts.EndToEnd.Tests.Internal.Common;
     using System.Collections.Generic;
     using System.Reflection;
     using Xunit.Sdk;
