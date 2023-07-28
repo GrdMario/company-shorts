@@ -14,14 +14,14 @@
         public MockWebServerFixture()
         {
             this.MockWebServerContainer = new ContainerBuilder()
-                .WithImage(MockWebServerConstants.Image)
-                .WithPortBinding(MockWebServerConstants.Port)
+                .WithImage(MockWebServerContainerConstants.Image)
+                .WithPortBinding(MockWebServerContainerConstants.Port)
                 .WithWaitStrategy(Wait.ForUnixContainer().UntilMessageIsLogged("INFO 1080 started on port: 1080"))
                 .Build();
 
             this.MockWebServerContainer.StartAsync().Wait();
 
-            this.Url = $"http://{this.MockWebServerContainer.Hostname}:{this.MockWebServerContainer.GetMappedPublicPort(MockWebServerConstants.Port)}";
+            this.Url = $"http://{this.MockWebServerContainer.Hostname}:{this.MockWebServerContainer.GetMappedPublicPort(MockWebServerContainerConstants.Port)}";
 
             this.enviromentVariableManager.Set(this.Url);
         }
