@@ -14,16 +14,17 @@
     [Route("api/v{version:apiVersion}/[controller]")]
     public abstract class ApiControllerBase : ControllerBase
     {
-        private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
         protected ApiControllerBase(
             IMediator mediator,
             IMapper mapper)
         {
-            _mediator = mediator;
+            this.Mediator = mediator;
             _mapper = mapper;
         }
+
+        public IMediator Mediator { get; }
 
         protected async Task<IActionResult> ProcessAsync<TApiDto, TCommand, TResponse>(
             TApiDto request,
@@ -35,7 +36,7 @@
                 ? _mapper.Map<TCommand>(request, opts)
                 : _mapper.Map<TCommand>(request);
 
-            TResponse result = await _mediator.Send(command);
+            TResponse result = await this.Mediator.Send(command);
 
             if (result is null)
             {
@@ -55,7 +56,7 @@
                 ? _mapper.Map<TCommand>(request, opts)
                 : _mapper.Map<TCommand>(request);
 
-            await _mediator.Send(command);
+            await this.Mediator.Send(command);
 
             return NoContent();
         }

@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Company.Shorts.Application.Contracts\Company.Shorts.Application.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="PetsAggregate\Commands\" />
-  </ItemGroup>
-
 </Project>

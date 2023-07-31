@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="Internal\Configuration\" />
+    <Folder Include="Internal\Examples\V1\" />
   </ItemGroup>
 
 

@@ -8,13 +8,13 @@
     {
         private readonly PostgresDbContext dbContext;
 
-        public UnitOfWork(PostgresDbContext dbContext, IUserRepository userRepository)
+        public UnitOfWork(PostgresDbContext dbContext, IFileRepository fileRepository)
         {
             this.dbContext = dbContext;
-            this.Users = userRepository;
+            this.Files = fileRepository;
         }
 
-        public IUserRepository Users { get; }
+        public IFileRepository Files { get; }
 
         public async Task SaveAsync(CancellationToken cancellationToken)
         {

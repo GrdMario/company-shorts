@@ -4,6 +4,6 @@
     {
         Task SaveAsync(CancellationToken cancellationToken);
 
-        public IUserRepository Users { get; }
+        public IFileRepository Files { get; }
     }
 }
