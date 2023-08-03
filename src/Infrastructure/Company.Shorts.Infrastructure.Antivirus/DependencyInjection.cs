@@ -1,6 +1,7 @@
 ﻿namespace Company.Shorts.Infrastructure.Antivirus
 {
     using Company.Shorts.Application.Contracts.Security;
+    using Company.Shorts.Infrastructure.Antivirus.Internal;
     using Microsoft.Extensions.DependencyInjection;
     using nClam;
 

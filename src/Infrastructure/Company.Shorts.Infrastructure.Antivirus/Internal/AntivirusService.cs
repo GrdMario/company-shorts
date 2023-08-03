@@ -1,4 +1,4 @@
-﻿namespace Company.Shorts.Infrastructure.Antivirus
+﻿namespace Company.Shorts.Infrastructure.Antivirus.Internal
 {
     using Company.Shorts.Application.Contracts.Security;
     using Company.Shorts.Domain;
@@ -16,7 +16,7 @@
 
         public async Task<bool> IsVirusAsync(byte[] data)
         {
-            var scanResult = await this.client.SendAndScanFileAsync(data);
+            var scanResult = await client.SendAndScanFileAsync(data);
 
             var result = scanResult.Result switch
             {
