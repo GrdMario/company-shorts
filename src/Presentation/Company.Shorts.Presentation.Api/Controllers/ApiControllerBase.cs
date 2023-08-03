@@ -1,9 +1,9 @@
 ﻿namespace Company.Shorts.Presentation.Api.Controllers
 {
-    using AutoMapper;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using System.Net.Mime;
+    using System.Threading;
 
     public interface IApiDto
     {
@@ -14,29 +14,19 @@
     [Route("api/v{version:apiVersion}/[controller]")]
     public abstract class ApiControllerBase : ControllerBase
     {
-        private readonly IMapper _mapper;
-
         protected ApiControllerBase(
-            IMediator mediator,
-            IMapper mapper)
+            IMediator mediator)
         {
             this.Mediator = mediator;
-            _mapper = mapper;
         }
 
         public IMediator Mediator { get; }
 
-        protected async Task<IActionResult> ProcessAsync<TApiDto, TCommand, TResponse>(
-            TApiDto request,
-            Action<IMappingOperationOptions<object, TCommand>>? opts = null)
-            where TApiDto : IApiDto
+        protected async Task<IActionResult> ProcessAsync<TCommand, TResponse>(
+            TCommand command, CancellationToken cancellationToken)
             where TCommand : IRequest<TResponse>
         {
-            TCommand? command = opts is not null
-                ? _mapper.Map<TCommand>(request, opts)
-                : _mapper.Map<TCommand>(request);
-
-            TResponse result = await this.Mediator.Send(command);
+            TResponse result = await Mediator.Send(command, cancellationToken);
 
             if (result is null)
             {
@@ -46,17 +36,12 @@
             return Ok(result);
         }
 
-        protected async Task<IActionResult> ProcessAsync<TApiDto, TCommand>(
-            TApiDto request,
-            Action<IMappingOperationOptions<object, TCommand>>? opts = null)
-            where TApiDto : IApiDto
+        protected async Task<IActionResult> ProcessAsync<TCommand>(
+            TCommand command,
+            CancellationToken cancellationToken)
             where TCommand : IRequest
         {
-            TCommand command = opts is not null
-                ? _mapper.Map<TCommand>(request, opts)
-                : _mapper.Map<TCommand>(request);
-
-            await this.Mediator.Send(command);
+            await Mediator.Send(command, cancellationToken);
 
             return NoContent();
         }

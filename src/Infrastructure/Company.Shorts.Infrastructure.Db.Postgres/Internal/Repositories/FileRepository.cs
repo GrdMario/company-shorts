@@ -4,6 +4,8 @@
     using Company.Shorts.Domain;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -14,22 +16,27 @@
 
         public FileRepository(PostgresDbContext dbContext)
         {
-            this.files = dbContext.Set<File>();
+            files = dbContext.Set<File>();
         }
 
         public void Add(File file)
         {
-            this.files.Add(file);
+            files.Add(file);
+        }
+
+        public async Task<List<File>> GetAsync(int skip, int take, CancellationToken cancellation)
+        {
+            return await this.files.Skip(skip).Take(take).OrderBy(ob => ob.CreatedAt).ToListAsync(cancellation);
         }
 
         public Task<File?> GetByIdAsync(Guid id, CancellationToken cancellation)
         {
-            return this.files.FirstOrDefaultAsync(s => s.Id == id, cancellation);
+            return files.Where(s => s.Id == id).FirstOrDefaultAsync(s => s.Id == id, cancellation);
         }
 
-        public Task<File> GetbyIdSafeAsync(Guid id, CancellationToken cancellation)
+        public async Task<File> GetbyIdSafeAsync(Guid id, CancellationToken cancellation)
         {
-            return this.GetbyIdSafeAsync(id, cancellation) ?? throw new ApplicationException("Unable to find file.");
+            return await this.GetByIdAsync(id, cancellation) ?? throw new ApplicationException("Unable to find file.");
         }
     }
 }

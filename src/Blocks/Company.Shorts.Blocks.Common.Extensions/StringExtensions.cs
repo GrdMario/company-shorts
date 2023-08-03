@@ -1,5 +1,5 @@
 ﻿namespace Company.Shorts.Blocks.Common.Extensions
-{ 
+{
     using System.Text;
     using System.Web;
 

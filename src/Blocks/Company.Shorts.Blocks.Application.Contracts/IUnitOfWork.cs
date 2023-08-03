@@ -1,5 +1,5 @@
 ﻿namespace Company.Shorts.Blocks.Application.Contracts
-{ 
+{
     public interface IUnitOfWork : IDisposable
     {
         IDatabaseTransaction? CurrentTransaction { get; }

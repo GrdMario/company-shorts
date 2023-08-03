@@ -1,13 +1,11 @@
 ﻿namespace Company.Shorts.Blocks.Application.Core.Adapters
 {
     using Company.Shorts.Blocks.Application.Contracts;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Primitives;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-
-    using Microsoft.AspNetCore.Connections.Features;
-    using Microsoft.AspNetCore.Http;
 
     public class HttpContextAccessorAdapter : IHttpContextAccessorAdapter
     {

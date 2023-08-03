@@ -5,9 +5,8 @@
     using Company.Shorts.Blocks.Common.Serilog.Configuration;
     using Company.Shorts.Blocks.Common.Swagger.Configuration;
     using Company.Shorts.Blocks.Presentation.Api.Configuration;
+    using Company.Shorts.Infrastructure.Antivirus;
     using Company.Shorts.Infrastructure.Db.Postgres;
-    using Company.Shorts.Infrastructure.ExampleAdapter;
-    using Company.Shorts.Infrastructure.Http.ExternalApi;
     using Company.Shorts.Presentation.Api;
     using Hellang.Middleware.ProblemDetails;
     using Microsoft.AspNetCore.Builder;
@@ -31,28 +30,22 @@
 
         public IWebHostEnvironment Environment { get; }
 
-        public ExampleAdapterSettings? ExampleAdapterSettings =>
-            Configuration
-                .GetSection(ExampleAdapterSettings.Key)
-                .Get<ExampleAdapterSettings>();
-
         public PostgresAdapterSettings? PostgresAdapterSettings =>
             Configuration
                 .GetSection(PostgresAdapterSettings.Key)
                 .Get<PostgresAdapterSettings>();
 
-        public ExternalApiSettings? ExternalApiSettings =>
+        public AntivirusAdapterSettings? AntivirusAdapterSettings =>
             Configuration
-                .GetSection(ExternalApiSettings.Key)
-                .Get<ExternalApiSettings>();
+                .GetSection(AntivirusAdapterSettings.Key)
+                .Get<AntivirusAdapterSettings>();
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
             services.AddHealthChecks();
-            services.AddPostgresDatabaseLayer(PostgresAdapterSettings ?? throw new ArgumentException(nameof(PostgresAdapterSettings)));
-            services.AddInfrastructureExampleAdapter(ExampleAdapterSettings ?? throw new ArgumentException(nameof(ExampleAdapterSettings)));
-            services.AddHttpExternalApiModule(ExternalApiSettings ?? throw new ArgumentException(nameof(ExternalApiSettings))); 
+            services.AddAntivirusLayer(this.AntivirusAdapterSettings ?? throw new ArgumentException(nameof(this.AntivirusAdapterSettings)));
+            services.AddPostgresDatabaseLayer(this.PostgresAdapterSettings ?? throw new ArgumentException(nameof(this.PostgresAdapterSettings)));
             services.AddApplicationLayer();
             services.AddPresentationLayer(Environment);
             services.AddAutoMapperConfiguration(AppDomain.CurrentDomain);

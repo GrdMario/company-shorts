@@ -11,14 +11,14 @@
         public UnitOfWork(PostgresDbContext dbContext, IFileRepository fileRepository)
         {
             this.dbContext = dbContext;
-            this.Files = fileRepository;
+            Files = fileRepository;
         }
 
         public IFileRepository Files { get; }
 
         public async Task SaveAsync(CancellationToken cancellationToken)
         {
-            await this.dbContext.SaveChangesAsync(cancellationToken);
+            await dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -1,5 +1,11 @@
 version: "3.3"
 services:
+  company-shorts-antivirus:
+    image: "clamav/clamav"
+    container_name: company-shorts-antivirus
+    restart: unless-stopped
+    ports:
+      - "3310:3310"
   company-shorts-postgres:
     image: "postgres:15.1-alpine"
     container_name: company-shorts-postgres

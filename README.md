@@ -1,0 +1,1 @@
+dotnet ef migrations add AddingName --project src\Infrastructure\Company.Shorts.Infrastructure.Db.Postgres\Company.Shorts.Infrastructure.Db.Postgres.csproj -- PostgresAdapterSettings:Url cce98938-947d-45b7-86fe-161ef15f8c52 D:\Code\Tutorials\c_sharp\company-shorts\src\Company.Shorts

@@ -1,6 +1,7 @@
 ﻿namespace Company.Shorts.Blocks.Application.Core.Behaviors
 {
     using FluentValidation;
+    using FluentValidation.Results;
     using MediatR;
     using System.Threading;
     using System.Threading.Tasks;
@@ -18,8 +19,19 @@
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            var failures = _validators
-                .Select(validator => validator.Validate(request))
+            List<ValidationResult> errors = new();
+
+            foreach (var validator in _validators)
+            {
+                var error = await validator.ValidateAsync(request, cancellationToken);
+
+                if (error is not null)
+                {
+                    errors.Add(error);
+                }
+            }
+
+            var failures = errors
                 .SelectMany(result => result.Errors)
                 .Where(failure => failure is not null)
                 .GroupBy(failure => failure.PropertyName)

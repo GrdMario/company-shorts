@@ -1,5 +1,5 @@
 ﻿namespace Company.Shorts.Blocks.Common.Serilog.Configuration
-{ 
+{
     using global::Serilog.Core;
     using global::Serilog.Events;
 

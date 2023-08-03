@@ -3,6 +3,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Design;
     using Microsoft.Extensions.Configuration;
+    using System;
 
     internal sealed class PostgresDbContextFactory : IDesignTimeDbContextFactory<PostgresDbContext>
     {
@@ -12,17 +13,13 @@
 
             var optionsBuilder = new DbContextOptionsBuilder<PostgresDbContext>();
             var connectionString = configuration.GetSection(args[0]).Value;
-
             optionsBuilder.UseNpgsql(connectionString);
 
             PostgresDbContext instance = new(optionsBuilder.Options);
 
-            if (instance is null)
-            {
-                throw new InvalidOperationException($"Unable to initialize {nameof(PostgresDbContext)} instance.");
-            }
-
-            return instance;
+            return instance is null
+                ? throw new InvalidOperationException($"Unable to initialize {nameof(PostgresDbContext)} instance.")
+                : instance;
         }
 
         private static IConfigurationRoot BuildConfiguration(string[] args)
